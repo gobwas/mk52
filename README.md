@@ -1,0 +1,1 @@
+![mk52](https://upload.wikimedia.org/wikipedia/commons/8/82/Elektronika_MK_52_with_accessories.jpg)
