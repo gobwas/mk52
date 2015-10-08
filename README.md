@@ -11,7 +11,7 @@ So use it to restore deps and build sources:
     gb vendor restore && gb build
 ```
 
-## Use
+## Usage
 
 Both `client` and `server` apps use the same options:
 
