@@ -1,9 +1,8 @@
-# Electronica MK-52
-___________________
+## Electronica MK-52
 
 ![mk52](https://upload.wikimedia.org/wikipedia/commons/8/82/Elektronika_MK_52_with_accessories.jpg)
 
-# Build
+## Build
 
 This app uses [gb](http://getgb.io) to manage dependencies.
 So use it to restore deps and build sources:
@@ -12,7 +11,7 @@ So use it to restore deps and build sources:
     gb vendor restore && gb build
 ```
 
-# Use
+## Use
 
 Both `client` and `server` apps use the same options:
 
@@ -33,7 +32,7 @@ So:
 ./bin/client - "1 + 1 + 5 * 10 + 9 ^ 2"
 ```
 
-# Output
+## Output
 
 Both `client` and `server` use the same logging strategy - all log message is sent to `stderr`.
 `client` send result data to `stdout`.
