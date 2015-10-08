@@ -13,6 +13,19 @@
 			"repository": "https://github.com/onsi/gomega",
 			"revision": "d6dbcadd097a94624226ca555d70a0d14d4d6181",
 			"branch": "master"
+		},
+		{
+			"importpath": "github.com/satori/go.uuid",
+			"repository": "https://github.com/satori/go.uuid",
+			"revision": "08f0718b61e95ddba0ade3346725fe0e4bf28ca6",
+			"branch": "master"
+		},
+		{
+			"importpath": "golang.org/x/net/websocket",
+			"repository": "https://go.googlesource.com/net",
+			"revision": "b846920a172af75fe52c1400ae6094307be83b8a",
+			"branch": "master",
+			"path": "/websocket"
 		}
 	]
 }

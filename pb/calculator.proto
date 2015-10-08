@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package network;
+
+message Request {
+    string id = 1;
+    string expression = 2;
+}
+
+message Response {
+    string id = 1;
+    string error = 2;
+    double result = 3;
+}

@@ -98,3 +98,5 @@ crashlytics.properties
 crashlytics-build.properties
 
 vendor/src
+bin
+pkg
