@@ -15,12 +15,12 @@ So use it to restore deps and build sources:
 
 Both `client` and `server` apps use the same options:
 
-Option | Default   | Meaning
--------|-----------|--------
-host     localhost   Host to listen/connect
-port     5555        Port to listen/connect
-route    mk52        Route for websocket handler
-timeout  10          Timeout in seconds to wait for request/response
+Option  | Default   | Meaning
+--------|-----------|--------
+host    | localhost | Host to listen/connect
+port    | 5555      | Port to listen/connect
+route   | mk52      | Route for websocket handler
+timeout | 10        | Timeout in seconds to wait for request/response
 
 So:
 
