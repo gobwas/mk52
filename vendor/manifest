@@ -1,0 +1,18 @@
+{
+	"version": 0,
+	"dependencies": [
+		{
+			"importpath": "github.com/golang/protobuf/proto",
+			"repository": "https://github.com/golang/protobuf",
+			"revision": "3d2510a4dd961caffa2ae781669c628d82db700a",
+			"branch": "master",
+			"path": "/proto"
+		},
+		{
+			"importpath": "github.com/onsi/gomega",
+			"repository": "https://github.com/onsi/gomega",
+			"revision": "d6dbcadd097a94624226ca555d70a0d14d4d6181",
+			"branch": "master"
+		}
+	]
+}
