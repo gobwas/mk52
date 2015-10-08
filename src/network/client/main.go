@@ -13,18 +13,23 @@ import (
 	"time"
 )
 
+var Host = flag.String("host", "localhost", "host to listen")
+var Port = flag.Int("port", 5555, "port to listen")
+var Route = flag.String("route", "mk52", "route to listen")
+var Timeout = flag.Int("timeout", 10, "timeout in seconds")
+
 func main() {
 	flag.Parse()
 
-	origin := "http://localhost"
-	url := "ws://localhost:5555/mk52"
+	origin := fmt.Sprintf("http://%s", *Host)
+	url := fmt.Sprintf("ws://%s:%d/%s", *Host, *Port, *Route)
 
 	expr := flag.Arg(1)
 	if expr == "" {
-		log.Fatal("Pass expression")
+		log.Fatal("expression is expected")
 	}
 
-	log.Printf("Sending expression: %s", expr)
+	log.Printf("sending expression: %s", expr)
 
 	ws, err := websocket.Dial(url, "", origin)
 	defer ws.Close()
@@ -43,7 +48,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	timeout := time.NewTimer(time.Second * 5)
+	timeout := time.NewTimer(time.Second * time.Duration(*Timeout))
 
 	for {
 		select {

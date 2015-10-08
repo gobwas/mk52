@@ -14,42 +14,14 @@ import (
 	"time"
 )
 
-type Task struct {
-	ws *websocket.Conn
-	id string
-}
-
-func (self *Task) send(response []byte) (err error) {
-	if _, err = self.ws.Write(response); err != nil {
-		log.Printf("[%s] error sending response: %s", self.id, err)
-	}
-
-	return
-}
-
-func (self *Task) success(result float64) (err error) {
-	response, err := proto.Marshal(&network.Response{self.id, "", result})
-	if err != nil {
-		log.Printf("[%s] error marshalling response: %s", self.id, err)
-		return
-	}
-
-	return self.send(response)
-}
-
-func (self *Task) error(e error) (err error) {
-	response, err := proto.Marshal(&network.Response{self.id, e.Error(), 0})
-	if err != nil {
-		log.Printf("[%s] error marshalling response: %s", self.id, err)
-		return
-	}
-
-	return self.send(response)
-}
+var Host = flag.String("host", "localhost", "host to listen")
+var Port = flag.Int("port", 5555, "port to listen")
+var Route = flag.String("route", "mk52", "route to listen")
+var Timeout = flag.Int("timeout", 10, "timeout in seconds")
 
 func CalcServer(ws *websocket.Conn) {
 	defer ws.Close()
-	timeout := time.NewTimer(time.Second * 10)
+	timeout := time.NewTimer(time.Second * time.Duration(*Timeout))
 
 	for {
 		select {
@@ -98,11 +70,6 @@ func CalcServer(ws *websocket.Conn) {
 	}
 }
 
-var Host = flag.String("host", "localhost", "host to listen")
-var Port = flag.Int("port", 5555, "port to listen")
-var Route = flag.String("route", "mk52", "route to listen")
-
-// This example demonstrates a trivial echo server.
 func main() {
 	flag.Parse()
 	http.Handle(fmt.Sprintf("/%s", *Route), websocket.Handler(CalcServer))
