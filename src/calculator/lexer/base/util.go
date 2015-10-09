@@ -1,5 +1,7 @@
 package base
 
+import "unicode"
+
 func isSymbolic(char rune) bool {
 	return char == '$' || char == '_'
 }
@@ -9,7 +11,7 @@ func isLowerCase(char rune) bool {
 }
 
 func isWhitespace(char rune) bool {
-	return char == ' ' || char == '\n' || char == '\r' || char == '\t'
+	return unicode.IsSpace(char)
 }
 
 func isNumeric(char rune) bool {

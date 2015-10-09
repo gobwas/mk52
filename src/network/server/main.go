@@ -21,6 +21,8 @@ var Timeout = flag.Int("timeout", 10, "timeout in seconds")
 
 func CalcServer(ws *websocket.Conn) {
 	defer ws.Close()
+
+	ws.SetReadDeadline(time.Now().Add(time.Second * time.Duration(*Timeout)))
 	timeout := time.NewTimer(time.Second * time.Duration(*Timeout))
 
 	for {
@@ -63,6 +65,7 @@ func CalcServer(ws *websocket.Conn) {
 			}
 
 			log.Printf("calculated result: %f", result)
+
 			task.success(result)
 
 			return

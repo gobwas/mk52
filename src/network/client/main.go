@@ -48,6 +48,7 @@ func main() {
 		log.Fatal(err)
 	}
 
+	ws.SetDeadline(time.Now().Add(time.Second * time.Duration(*Timeout)))
 	timeout := time.NewTimer(time.Second * time.Duration(*Timeout))
 
 	for {

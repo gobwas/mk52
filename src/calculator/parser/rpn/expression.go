@@ -77,7 +77,7 @@ func (self Expression) Evaluate() (float64, error) {
 			// todo this could be optimized at parse stage
 			f, err := strconv.ParseFloat(token.Literal, 64)
 			if err != nil {
-				return 0, fmt.Errorf("Could not parse number literal: %s", err)
+				return 0, fmt.Errorf("could not parse number literal: %s", err)
 			}
 			stack = append(stack, f)
 
@@ -85,7 +85,7 @@ func (self Expression) Evaluate() (float64, error) {
 			vName := varName(token.Literal)
 
 			if v, ok := self.variables[vName]; !ok {
-				return 0, fmt.Errorf("Unknown variable %s", vName)
+				return 0, fmt.Errorf("unknown variable %s", vName)
 			} else {
 				stack = append(stack, v)
 			}
@@ -101,13 +101,13 @@ func (self Expression) Evaluate() (float64, error) {
 			}
 
 			if !ok {
-				return 0, fmt.Errorf("Unknown operator/function %s", token)
+				return 0, fmt.Errorf("unknown operator/function %s", token)
 			}
 
 			l := len(stack)
 
 			if fn.n > l {
-				return 0, fmt.Errorf("Malformed expression", token)
+				return 0, fmt.Errorf("malformed expression: %s", token)
 			}
 
 			for _, arg := range stack[l-fn.n:] {
@@ -116,19 +116,19 @@ func (self Expression) Evaluate() (float64, error) {
 
 			result, err := fn.Calc()
 			if err != nil {
-				return 0, fmt.Errorf("Calculation error: %s", err)
+				return 0, fmt.Errorf("calculation error: %s", err)
 			}
 
 			stack = append(stack[:l-fn.n], result)
 
 		default:
-			return 0, fmt.Errorf("Unexpected token %s", token)
+			return 0, fmt.Errorf("cnexpected token %s", token)
 		}
 	}
 
 	if len(stack) == 1 {
 		return stack[0], nil
 	} else {
-		return 0, fmt.Errorf("Malformed expression")
+		return 0, fmt.Errorf("malformed expression: %s", stack)
 	}
 }
